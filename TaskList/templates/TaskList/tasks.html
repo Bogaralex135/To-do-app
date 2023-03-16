@@ -1,0 +1,63 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+        
+        <div class="row mt-1">
+            <div class="col-md-1">
+                <p class="Ta">ToDo</p>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-info  btn-lg" href="{% url 'task-create' %}" role="button">Add Task</a>
+            </div>
+            <div class="col-md-2">
+               
+            </div>
+
+            <div class="col-md-7">
+                <form action="" class="d-flex" role="search" method="GET">
+                    <input class="form-control me-2 form-search" type="search" value="{{search_input}}" name="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-info" type="submit">Search</button>
+                  </form>
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-md-4">
+                
+            </div>
+            <div class="col-md-4">
+                <p class="sub-item">You have {{count}} task{{ count|pluralize:"s" }} incomplete</p>
+            </div>                        
+            <div class="col-md-4">{{ form.order }}</div>
+        </div>
+
+        {% for task in task_list %}
+        <div class="row mt-4 task-item">
+            {% if task.complete %}
+            <div class="col-md-10 task-container">
+                <div class="task-complete"></div>
+                <a class="task" href="{% url 'task-update' task.id %}">{{ task.title }}</a>
+            </div>
+            {% else %}
+            <div class="col-md-10 task-container">
+                <div class="task-incomplete"></div>
+                <a class="task" href="{% url 'task-update' task.id %}">{{ task.title }}</a>
+            </div>
+            {% endif %}
+            <div class="col-md-1">
+                <p class="priority">{{ task.priority|title }}</p>
+            </div>
+            <div class="col-md-1">
+                <p><a href="{% url 'task-delete' task.id %}"><i class="fa-solid fa-trash-can " id="delete-item"></i></a></p>
+    
+            </div>
+        </div>
+        {% empty %}
+        <h3>No Tasks found</h3>
+        {% endfor %}
+
+    </div>
+{% endblock %}

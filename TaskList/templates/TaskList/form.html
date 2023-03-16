@@ -1,0 +1,59 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 d-flex">
+            <a href="{% url 'task-list' %}"><i class="fa-solid fa-arrow-left back text-decoration-none text"></i></a>
+            <p class="mb-3"><a class="backtext" href="{% url 'task-list' %}">Go Back</a></p>
+        </div>
+        <div class="col-md-4">
+            <div class="position-relative mx-3">
+                <div class="position-absolute top-0 start-50 translate-middle">
+                    <h1 class="form-title">Task Form</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 d-flex"> 
+           
+        </div>
+        <div class="col-md-4">
+            
+
+
+            <div class="form-container my-3">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="title-container mb-4">
+                        <p class="form-text">Title</p>
+                        {{form.title}}
+                    </div>
+                    <div class="description-container mb-4">
+                        <p class="form-text">Description</p>
+                        {{form.description}}
+                    </div>
+                    <div class="priority-container mb-4">
+                        <p class="form-text">Priority</p>
+                        {{form.priority}}
+                    </div>
+                    <div class="complete-container my-4 d-flex">
+                        {{form.complete}}
+                        <label class="form-text" for="id_complete">Complete</label>
+                    </div>
+                    <div class="btn-container position-relative">
+                        <div class="position-absolute top-100 start-50 translate-middle">
+                            <input class="btn btn-primary btn-lg" type="submit" value="Submit">
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+{% endblock %}

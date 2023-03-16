@@ -1,0 +1,61 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 d-flex">
+            <a href="{% url 'task-list' %}"><i class="fa-solid fa-arrow-left back text-decoration-none text"></i></a>
+            <p class="mb-3"><a class="backtext" href="{% url 'task-list' %}">Go Back</a></p>
+        </div>
+        <div class="col-md-4">
+            <h1>Register</h1>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="form-container">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-item login-item">
+                        <label class="form-text" for="">Username</label>
+                        {{form.username}}
+                    </div>
+                    <div class="form-item login-item">
+                        <label class="form-text" for="">Passwords</label>
+                        {{form.password1}}
+                    </div>
+                    <div class="form-item login-item">
+                        <label class="form-text" for="">Password Confirmation</label>
+                        {{form.password2}}
+                    </div>
+                    <div class="btn-container position-relative m-5">
+                        <div class="position-absolute top-100 start-50 translate-middle">
+                            <input class="btn btn-primary btn-lg" type="submit" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <p class="account form-text">Already have an account? <a href="{% url 'login' %}" class="backtext">Login</a></p>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+<h1>Register</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Register">
+</form>
+
+<p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
